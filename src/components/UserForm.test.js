@@ -24,12 +24,16 @@ test("it calls onUserAdd when the form is submitted", () => {
   render(<UserForm onUserAdd={mock} />);
 
   // Find the two inputs
-  const [nameInput, emailInput] = screen.getAllByRole("textbox");
+  const nameInput = screen.getByRole("textbox", {
+    name: /name/i,
+  });
+  const emailInput = screen.getByRole("textbox", {
+    name: /email/i,
+  });
 
   // Simulate typing in a name
-  user.click(nameInput); // simulates clicking on the provided element = nameInput
-  user.keyboard("johanna"); // simulates typing 'johanna'
-  // user.keyboard('{Enter}'); //simulates pressing the Enter key
+  user.click(nameInput);
+  user.keyboard("johanna");
 
   // Simulate typing in an email
   user.click(emailInput);
@@ -43,5 +47,8 @@ test("it calls onUserAdd when the form is submitted", () => {
 
   // Assertion to make sure 'onUserAdd' gets called with email/name
   expect(mock).toHaveBeenCalled();
-  expect(mock).toHaveBeenCalledWith({name: 'johanna', email: 'johanna@gmail.com'})
+  expect(mock).toHaveBeenCalledWith({
+    name: "johanna",
+    email: "johanna@gmail.com",
+  });
 });
