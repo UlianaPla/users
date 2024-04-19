@@ -8,15 +8,17 @@ function UserList({ users }) {
     );
   });
 
-  return <table>
-    <thead>
+  return (
+    <table>
+      <thead>
         <tr>
-            <th>Name</th>
-            <th>Email</th>
+          <th>Name</th>
+          <th>Email</th>
         </tr>
-    </thead>
-    <tbody>{renderedUsers}</tbody>
-  </table>
+      </thead>
+      <tbody data-testid="users">{renderedUsers}</tbody>
+    </table>
+  );
 }
 
 export default UserList;
